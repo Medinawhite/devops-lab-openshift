@@ -1,0 +1,17 @@
+{
+  "name": "devops-lab-openshift",
+  "version": "1.0.0",
+  "description": "App Node mínima para practicar CI/CD de GitHub Actions a OpenShift",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test \"test/**/*.test.js\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "license": "MIT"
+}

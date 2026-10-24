@@ -1,0 +1,40 @@
+# Valores por defecto. El pipeline sobreescribe image.repository e image.tag con --set.
+replicaCount: 2
+
+image:
+  repository: ghcr.io/medinawhite/devops-lab-openshift
+  tag: latest
+  pullPolicy: IfNotPresent
+
+containerPort: 8080
+
+# Configuración NO sensible -> ConfigMap (igual que hacías en el equipo de Bélgica)
+config:
+  APP_ENV: dev
+  APP_MESSAGE: "Hola desde OpenShift"
+
+service:
+  port: 8080
+
+route:
+  enabled: true
+  # Vacío = OpenShift genera el host automáticamente (<route>-<namespace>.apps...)
+  host: ""
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+probes:
+  liveness:
+    path: /health
+    initialDelaySeconds: 5
+    periodSeconds: 10
+  readiness:
+    path: /ready
+    initialDelaySeconds: 3
+    periodSeconds: 5
