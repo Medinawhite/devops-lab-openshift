@@ -2,7 +2,7 @@ const express = require('express');
 const os = require('os');
 
 const app = express();
-
+app.disable('x-powered-by');
 // Endpoint principal: dice qué versión y qué pod responde.
 // Útil para ver un rolling update en directo (curl en bucle mientras despliegas).
 app.get('/', (req, res) => {

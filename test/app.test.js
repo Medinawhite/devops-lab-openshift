@@ -34,3 +34,7 @@ test('GET /ready devuelve 503 cuando la app no está lista', async () => {
   assert.strictEqual(res.status, 503);
   app.setReady(true);
 });
+test('no expone la cabecera X-Powered-By', async () => {
+	  const res = await fetch(`${baseUrl}/health`);
+  assert.strictEqual(res.headers.get('x-powered-by'), null);
+});
