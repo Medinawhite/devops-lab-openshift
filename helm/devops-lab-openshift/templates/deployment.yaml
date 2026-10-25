@@ -23,8 +23,8 @@ spec:
         # Si cambia el ConfigMap, cambia el hash -> se recrean los pods automáticamente
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
-      # SIN runAsUser: en OpenShift lo asigna la SCC restricted-v2 (UID aleatorio del rango del namespace)
       terminationGracePeriodSeconds: 30
+      # SIN runAsUser: en OpenShift lo asigna la SCC restricted-v2 (UID aleatorio del rango del namespace)
       securityContext:
         runAsNonRoot: true
         seccompProfile:
