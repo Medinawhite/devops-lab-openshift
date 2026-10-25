@@ -24,6 +24,7 @@ spec:
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
       # SIN runAsUser: en OpenShift lo asigna la SCC restricted-v2 (UID aleatorio del rango del namespace)
+      terminationGracePeriodSeconds: 30
       securityContext:
         runAsNonRoot: true
         seccompProfile:
@@ -45,6 +46,10 @@ spec:
               port: http
             initialDelaySeconds: {{ .Values.probes.liveness.initialDelaySeconds }}
             periodSeconds: {{ .Values.probes.liveness.periodSeconds }}
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sleep", "5"]
           readinessProbe:
             httpGet:
               path: {{ .Values.probes.readiness.path }}
