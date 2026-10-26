@@ -105,7 +105,7 @@ jobs:
             --namespace "${{ vars.OPENSHIFT_NAMESPACE }}" \
             --set image.repository="${{ needs.build.outputs.image }}" \
             --set image.tag="${{ github.sha }}" \
-            --wait --timeout 3m
+            --wait --atomic --timeout 3m
 
       - name: Smoke test
         run: |
