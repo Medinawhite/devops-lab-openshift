@@ -8,7 +8,7 @@ image:
 
 containerPort: 8080
 
-# Configuración NO sensible -> ConfigMap (igual que hacías en el equipo de Bélgica)
+# Configuración NO sensible -> ConfigMap 
 config:
   APP_ENV: dev
   APP_MESSAGE: "Rolling update en directo"
